@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%5f&*t-!k@%3b2w+8=0e$bbmns)c6iq5z!)q(y^zr-8wqro(!v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'maribeth-pigfarm.onrender.com']
 
 
 # Application definition
@@ -148,6 +148,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'http://127.0.0.1:53018',  # Browser preview proxy
     'http://127.0.0.1:54763',  # Current browser preview proxy
+    'https://maribeth-pigfarm.onrender.com',
 ]
 
 # Additional CSRF debugging
