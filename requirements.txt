@@ -77,7 +77,7 @@ matplotlib==3.10.1
 matplotlib-inline==0.1.7
 mdurl==0.1.2
 mistune==3.1.2
-ml_dtypes==0.5.1
+ml_dtypes==0.5.0
 namex==0.0.8
 nbclient==0.10.2
 nbconvert==7.16.6
