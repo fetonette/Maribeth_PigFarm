@@ -18,10 +18,46 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from django.contrib.sitemaps.views import sitemap as django_sitemap
+
+from myapp.sitemaps import PigSitemap, UserProfileSitemap, FeedbackSitemap, StaticViewSitemap
+
+
+def sitemap_view(request, section=None):
+    """Serve sitemap without X-Robots-Tag header to allow indexing."""
+    response = django_sitemap(request, sitemaps, section=section)
+    response.headers.pop("X-Robots-Tag", None)
+    return response
+
+
+sitemaps = {
+    'pigs': PigSitemap,
+    'users': UserProfileSitemap,
+    'feedback': FeedbackSitemap,
+    'pages': StaticViewSitemap,
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('myapp.urls')),
+    path(
+        'googlebf784462d42b7884.html',
+        TemplateView.as_view(
+            template_name='googlebf784462d42b7884.html',
+            content_type='text/plain'
+        ),
+        name='google-site-verification'
+    ),
+    path(
+        'robots.txt',
+        TemplateView.as_view(
+            template_name='robots.txt',
+            content_type='text/plain'
+        ),
+        name='robots'
+    ),
+    path('sitemap.xml', sitemap_view, name='sitemap'),
 ]
 
 if settings.DEBUG:
