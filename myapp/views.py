@@ -394,16 +394,7 @@ def admin_pig_add(request):
     if request.method == 'POST':
         form = PigForm(request.POST, request.FILES)
         if form.is_valid():
-            pig = form.save(commit=False)
-            
-            # Custom ID assignment - start from 1 if no pigs exist
-            if not Pig.objects.exists():
-                # Reset the auto-increment sequence for pig table
-                from django.db import connection
-                with connection.cursor() as cursor:
-                    cursor.execute("DELETE FROM sqlite_sequence WHERE name='myapp_pig';")
-            
-            pig.save()
+            pig = form.save()
             messages.success(request, 'Pig added successfully!')
             return redirect('available_pigs')
     else:
