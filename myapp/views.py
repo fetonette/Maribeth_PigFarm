@@ -658,7 +658,7 @@ def admin_reservation_confirm(request, reservation_id):
     # Check if this is a reservation (requires downpayment) or checkout order (no downpayment required)
     if reservation.down_payment > 0:
         # This is a reservation - validate downpayment
-        minimum_payment = total_price * 0.5
+        minimum_payment = total_price * Decimal('0.5')
         if reservation.down_payment < minimum_payment:
             delivery_info = f" (including ₱125 delivery fee)" if reservation.delivery_option == 'home' else ""
             messages.error(request, f'Cannot accept reservation for {reservation.fullname}: Payment of ₱{reservation.down_payment:,.2f} is insufficient. Minimum 50% down payment required: ₱{minimum_payment:,.2f}{delivery_info}.')
@@ -1196,7 +1196,7 @@ def pending_orders_api(request):
         # Calculate required payment based on order type
         if order.down_payment > 0:
             # This is a reservation - 50% minimum downpayment required
-            required_payment = total_price * 0.5
+            required_payment = total_price * Decimal('0.5')
         else:
             # This is a checkout order - full payment required during delivery
             required_payment = 0  # No upfront payment required for checkout orders
