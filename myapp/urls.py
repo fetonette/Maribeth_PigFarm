@@ -57,7 +57,7 @@ urlpatterns = [
     
     # Admin Feedback Management
     path('manage/feedback/', views.admin_feedback_list, name='admin_feedback_list'),
-    path('admin/feedback/<int:feedback_id>/', views.admin_feedback_detail, name='admin_feedback_detail'),
+    path('manage/feedback/<int:feedback_id>/', views.admin_feedback_detail, name='admin_feedback_detail'),
     
     # Revenue Management
     path('manage/revenue/', views.revenue_dashboard, name='revenue_dashboard'),
