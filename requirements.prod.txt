@@ -10,3 +10,4 @@ Pillow==11.2.1
 # Media storage
 cloudinary==1.44.1
 django-cloudinary-storage==0.3.0
+python-decouple==3.8
