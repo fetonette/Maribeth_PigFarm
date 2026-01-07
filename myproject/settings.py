@@ -82,14 +82,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
 
-# Database
-# Use DATABASE_URL provided by Render
-import dj_database_url
-
+# Database - connect directly to Render Postgres (ignore DATABASE_URL env)
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'maribeth_pigfarm',
+        'USER': 'maribeth_pigfarm_user',
+        'PASSWORD': 'TNcXpvazOmoGP9bROav25W7C7xGZf85J',
+        'HOST': 'dpg-d5f3e6chg0os73ftgv2g-a.oregon-postgres.render.com',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
+        'CONN_MAX_AGE': 600,
+    }
 }
 
 
