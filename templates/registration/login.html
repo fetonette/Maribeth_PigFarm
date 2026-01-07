@@ -68,7 +68,12 @@
                 </div>
                 <div class="mb-4">
                     <label for="password" class="stylish-label">Password</label>
-                    <input type="password" class="form-control stylish-input" id="password" name="password" required placeholder="Enter your password">
+                    <div style="position: relative; display: flex; align-items: center;">
+                        <input type="password" class="form-control stylish-input" id="password" name="password" required placeholder="Enter your password" style="padding-right: 40px;">
+                        <button type="button" id="togglePassword" style="position: absolute; right: 10px; background: transparent; border: none; padding: 0; cursor: pointer; color: #6b7280; font-size: 16px;">
+                            &#128065;
+                        </button>
+                    </div>
                 </div>
                 <button type="submit" class="btn stylish-btn w-100 mb-4">Log In</button>
             </form>
@@ -79,4 +84,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    (function() {
+        var toggle = document.getElementById('togglePassword');
+        var input = document.getElementById('password');
+        if (toggle && input) {
+            toggle.addEventListener('click', function () {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    this.style.color = '#16a34a';
+                } else {
+                    input.type = 'password';
+                    this.style.color = '#6b7280';
+                }
+            });
+        }
+    })();
+</script>
 {% endblock %}
